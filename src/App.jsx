@@ -1,10 +1,11 @@
 import "./App.css";
-import Default from "./components/Default";
+
+import Home from "./screens/Home";
 
 function App() {
   return (
     <>
-      <Default />
+      <Home />
     </>
   );
 }
