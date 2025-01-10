@@ -26,7 +26,7 @@ const Home = () => {
           logoImage={GithubLogo}
         />
       </div>
-      <h1>{count}</h1>
+      <h1>Counter value: {count}</h1>
       <Body />
       <Footer />
     </div>
