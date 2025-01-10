@@ -9,7 +9,10 @@ import viteLogo from "/vite.svg";
 import reactLogo from "../assets/react.svg";
 import GithubLogo from "../assets/github.svg";
 
+import { useSelector } from "react-redux";
+
 const Home = () => {
+  const count = useSelector((state) => state.counter.value);
   return (
     <div>
       <div>
@@ -23,6 +26,7 @@ const Home = () => {
           logoImage={GithubLogo}
         />
       </div>
+      <h1>{count}</h1>
       <Body />
       <Footer />
     </div>
