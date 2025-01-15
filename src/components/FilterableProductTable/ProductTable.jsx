@@ -1,3 +1,6 @@
+import ProductCategoryRow from "./ProductCategoryRow";
+import ProductRow from "./ProductRow";
+
 const ProductTable = ({ products }) => {
   const rows = [];
   let lastCategory = null;
