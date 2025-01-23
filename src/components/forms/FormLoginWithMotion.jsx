@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import ModalInfo from "../Modals/ModalInfo";
 // eslint-disable-next-line react/prop-types
 const FormWithMotionAndHook = ({ titleForm }) => {
+  const [message, setMessage] = useState("");
   const { formData, handleChange } = useForm({
     username: "",
     email: "",
@@ -13,10 +14,17 @@ const FormWithMotionAndHook = ({ titleForm }) => {
     module: useSelector((state) => state.form.loginForm.module),
   });
   const [showModal, setShowModal] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowModal(true);
-    console.log("datos del formulario", formData);
+    if (formData.password.includes(formData.username)) {
+      // localStorage.setItem("user", JSON.stringify(formData));
+      // console.log("Datos guardados en localStorage");
+      setMessage(`Bienvenido ${formData.username}`);
+      console.log("datos del formulario", formData);
+    }
+    setMessage("User/Password incorrectos");
   };
   const onCloseModalInfo = () => {
     setShowModal(false);
@@ -30,7 +38,7 @@ const FormWithMotionAndHook = ({ titleForm }) => {
     >
       <ModalInfo
         visible={showModal}
-        message={"Formulario Enviado"}
+        message={message}
         onClose={onCloseModalInfo}
       />
       <form onSubmit={handleSubmit}>
