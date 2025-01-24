@@ -12,10 +12,14 @@ const initialState = {
 export const formSlice = createSlice({
   name: "form",
   initialState,
-  reducers: {},
+  reducers: {
+    setValue: (state, action) => {
+      state.loginForm[action.payload.name] = action.payload.value;
+    },
+  },
 });
 
 // Action creators are generated for each case reducer function
-export const { setInitialValue } = formSlice.actions;
+export const { setValue } = formSlice.actions;
 
 export default formSlice.reducer;

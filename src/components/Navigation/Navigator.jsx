@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import ModalSession from "../Modals/ModalSession";
 
 const Navigator = () => {
   return (
@@ -12,6 +13,7 @@ const Navigator = () => {
       <Link to="/login" className="nav-link">
         Login
       </Link>
+      <ModalSession />
     </nav>
   );
 };

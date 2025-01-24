@@ -1,11 +1,13 @@
 import { motion } from "motion/react";
 import useForm from "../Hooks/useForm";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import ModalInfo from "../Modals/ModalInfo";
+import { setValue } from "../../store/features/form/formSlice";
 // eslint-disable-next-line react/prop-types
 const FormWithMotionAndHook = ({ titleForm }) => {
+  const dispatch = useDispatch();
   const [message, setMessage] = useState("");
   const { formData, handleChange } = useForm({
     username: "",
@@ -23,7 +25,10 @@ const FormWithMotionAndHook = ({ titleForm }) => {
       setMessage(`Bienvenido ${formData.username}`);
       setClasselement("notification-success-login");
 
-      console.log("datos del formulario", formData);
+      dispatch(setValue({ name: "username", value: formData.username }));
+      dispatch(setValue({ name: "email", value: formData.email }));
+      dispatch(setValue({ name: "password", value: formData.password }));
+      dispatch(setValue({ name: "module", value: formData.module }));
     } else {
       setMessage("User/Password incorrectos");
       setClasselement("notification-not-success-login");
