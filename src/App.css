@@ -91,6 +91,18 @@
   position: relative;
 }
 
+.notification-success-login {
+  background-color: #a0eea0;
+  color: black;
+  border: 1px solid #a0eea0;
+}
+
+.notification-not-success-login {
+  background-color: #f5b7b1;
+  color: black;
+  border: 1px solid #f5b7b1;
+}
+
 .close-btn-success {
   position: absolute;
   top: 0.5rem;

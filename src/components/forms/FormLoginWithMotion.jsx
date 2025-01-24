@@ -14,17 +14,21 @@ const FormWithMotionAndHook = ({ titleForm }) => {
     module: useSelector((state) => state.form.loginForm.module),
   });
   const [showModal, setShowModal] = useState(false);
+  const [classElement, setClasselement] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowModal(true);
     if (formData.password.includes(formData.username)) {
-      // localStorage.setItem("user", JSON.stringify(formData));
-      // console.log("Datos guardados en localStorage");
+      localStorage.setItem("user", JSON.stringify(formData));
       setMessage(`Bienvenido ${formData.username}`);
+      setClasselement("notification-success-login");
+
       console.log("datos del formulario", formData);
+    } else {
+      setMessage("User/Password incorrectos");
+      setClasselement("notification-not-success-login");
     }
-    setMessage("User/Password incorrectos");
+    setShowModal(true);
   };
   const onCloseModalInfo = () => {
     setShowModal(false);
@@ -40,6 +44,7 @@ const FormWithMotionAndHook = ({ titleForm }) => {
         visible={showModal}
         message={message}
         onClose={onCloseModalInfo}
+        className={classElement}
       />
       <form onSubmit={handleSubmit}>
         <motion.div
@@ -58,6 +63,7 @@ const FormWithMotionAndHook = ({ titleForm }) => {
             <label>
               Module:
               <input
+                readOnly
                 type="text"
                 name="module"
                 value={formData.module}

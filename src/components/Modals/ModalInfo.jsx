@@ -1,14 +1,14 @@
 import { motion } from "motion/react";
 
 // eslint-disable-next-line react/prop-types
-const ModalInfo = ({ visible, message, onClose }) => {
+const ModalInfo = ({ visible, message, onClose, className }) => {
   if (!visible) {
     return null;
   }
   return (
     <div className="modal-overlay">
       <motion.div
-        className="notification-success"
+        className={`notification-success ${className}`}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
