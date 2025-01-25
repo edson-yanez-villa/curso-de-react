@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import ModalInfo from "../Modals/ModalInfo";
+import ModalLogout from "../Modals/ModalLogout";
 import { setValue } from "../../store/features/form/formSlice";
 // eslint-disable-next-line react/prop-types
 const FormWithMotionAndHook = ({ titleForm }) => {
