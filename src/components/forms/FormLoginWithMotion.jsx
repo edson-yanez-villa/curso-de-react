@@ -9,6 +9,9 @@ import { setValue } from "../../store/features/form/formSlice";
 const FormWithMotionAndHook = ({ titleForm }) => {
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
+  const [stateText, setStateText] = useState(true);
+  const [textPassword, setTestPassword] = useState("Show");
+  const [textType, setTextType] = useState("password");
   const { formData, handleChange } = useForm({
     username: "",
     email: "",
@@ -37,6 +40,17 @@ const FormWithMotionAndHook = ({ titleForm }) => {
   };
   const onCloseModalInfo = () => {
     setShowModal(false);
+  };
+  const setTypePassword = () => {
+    if (stateText) {
+      setTestPassword("Hide");
+      setTextType("text");
+      setStateText(false);
+    } else {
+      setTestPassword("Show");
+      setTextType("password");
+      setStateText(true);
+    }
   };
   return (
     <motion.div
@@ -123,13 +137,16 @@ const FormWithMotionAndHook = ({ titleForm }) => {
             <label>
               Password:
               <input
-                type="password"
+                type={textType}
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 required
               />
             </label>
+            <button type="button" onClick={() => setTypePassword(true)}>
+              {textPassword}
+            </button>
           </div>
         </motion.div>
         <motion.div
