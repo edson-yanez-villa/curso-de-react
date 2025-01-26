@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import ModalLogout from "./ModalLogout";
 import { useState } from "react";
-import { setValue } from "../../store/features/form/formSlice";
+import { clearFormHook } from "../../store/features/form/formSlice";
+import useForm from "../Hooks/useForm";
 
 const ModalSession = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const name = useSelector((state) => state.form.loginForm.username);
   const email = useSelector((state) => state.form.loginForm.email);
+  const { clearForm } = useForm();
 
   const showViewModal = (value) => {
     setShowModal(value);
@@ -17,10 +19,8 @@ const ModalSession = () => {
   };
   const removeSessionStore = () => {
     localStorage.removeItem("user");
-    dispatch(setValue({ name: "username", value: "" }));
-    dispatch(setValue({ name: "email", value: "" }));
-    dispatch(setValue({ name: "password", value: "" }));
-    dispatch(setValue({ name: "module", value: "" }));
+    dispatch(clearFormHook());
+    dispatch(clearForm());
     onCloseModalInfo();
   };
 
@@ -34,7 +34,7 @@ const ModalSession = () => {
         onAccept={removeSessionStore}
       />
       <span className="session-info">
-        {`Bienvenido: ${name} | ${email}`}{" "}
+        {`Bienvenido: ${name} | ${email}`}
         <button onClick={() => showViewModal(true)}>Logout </button>
       </span>
     </>

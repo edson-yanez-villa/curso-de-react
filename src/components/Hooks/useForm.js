@@ -11,10 +11,18 @@ const useForm = (initialState = {}) => {
   const resetForm = () => {
     setFormData(initialState);
   };
+  const clearForm = () => {
+    const clearedState = Object.keys(initialState).reduce((acc, key) => {
+      acc[key] = "";
+      return acc;
+    }, {});
+    setFormData(clearedState);
+  };
   return {
     formData,
     handleChange,
     resetForm,
+    clearForm,
   };
 };
 export default useForm;
